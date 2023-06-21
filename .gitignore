@@ -13,6 +13,8 @@
 .idea/
 .vscode/
 *.iml
+src/cert.der
+src/list.txt
 
 # Ignore macOS specific files
 .DS_Store
