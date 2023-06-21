@@ -2,13 +2,13 @@
 mod api;
 mod utils;
 
-use std::error::Error;
+use crate::api::errors::GamertagError;
 use reqwest::Client;
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn Error>> {
+async fn main() -> Result<(), GamertagError> {
     env_logger::init();
-    let client = Client::builder().build()?;
+    let client = Client::builder().build().map_err(|e| GamertagError::RequestError(e.to_string()))?;
 
     let headers = utils::headers::get_headers();
 
@@ -18,10 +18,8 @@ async fn main() -> Result<(), Box<dyn Error>> {
             println!("Gamertag: {}", response.gamertag);
             println!("Composed Gamertag: {}", response.composed_gamertag);
             println!("Classic Gamertag: {}", response.classic_gamertag);
+            Ok(())
         },
-        Err(e) => println!("Error: {}", e),
+        Err(e) => Err(e),
     }
-
-    Ok(())
 }
-
