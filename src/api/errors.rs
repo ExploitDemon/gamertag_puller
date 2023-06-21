@@ -1,3 +1,4 @@
+// src/api/errors.rs
 use thiserror::Error;
 
 #[derive(Error, Debug)]

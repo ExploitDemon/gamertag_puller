@@ -1,3 +1,4 @@
+// src/utils/headers.rs
 use reqwest::header::{HeaderMap, HeaderValue, CONTENT_TYPE, USER_AGENT, AUTHORIZATION};
 
 pub fn get_headers() -> HeaderMap {
